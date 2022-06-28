@@ -79,5 +79,13 @@ flutter:
       fonts:
         - asset: assets/Fonts/Poppins-Medium.ttf
 
+    - family: Card
+      fonts:
+        - asset: assets/Icon/Card.ttf
+
+    - family: Heart
+      fonts:
+        - asset: assets/Icon/Heart.ttf
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

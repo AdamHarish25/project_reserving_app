@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, file_names, non_constant_identifier_names, prefer_const_constructors_in_immutables, prefer_adjacent_string_concatenation, prefer_const_literals_to_create_immutables, duplicate_ignore
 
 import 'package:flutter/material.dart';
+import 'package:project_reserving_app/Icons.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -72,7 +73,7 @@ class HomePageState extends State<HomePage> {
     "assets/images/IllustrationImage2.png",
   ];
 
-  List<Color> TipsColors = [
+  List<Color> TipsbackgroundColors = [
     Color.fromARGB(57, 217, 0, 255),
     Color.fromARGB(38, 0, 140, 255)
   ];
@@ -94,11 +95,14 @@ class HomePageState extends State<HomePage> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(
-          horizontal: 30,
-          vertical: 40,
+          horizontal: 40,
+          vertical: 30,
         ),
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
+          padding: EdgeInsets.only(
+            bottom: 50,
+          ),
           child: Column(
             children: [
               Container(
@@ -113,6 +117,7 @@ class HomePageState extends State<HomePage> {
                     Text(
                       "Explore Now",
                       style: TextStyle(
+                        fontFamily: "PoppinsMed",
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
                       ),
@@ -124,7 +129,7 @@ class HomePageState extends State<HomePage> {
                       "Mencari kosan yang cozy",
                       style: TextStyle(
                         color: Colors.grey,
-                        fontFamily: "assets/Fonts/Poppins-Medium.ttf",
+                        fontFamily: "PoppinsMed",
                         fontSize: 15,
                         fontWeight: FontWeight.w400,
                       ),
@@ -167,6 +172,7 @@ class HomePageState extends State<HomePage> {
                           child: Text(
                             ListTitleHorizontal[idx],
                             style: TextStyle(
+                              fontFamily: "PoppinsMed",
                               fontWeight: FontWeight.bold,
                               fontSize: 15,
                             ),
@@ -188,7 +194,7 @@ class HomePageState extends State<HomePage> {
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 17,
-                    fontFamily: "assets/Fonts/Poppins-Medium.ttf",
+                    fontFamily: "PoppinsMed",
                   ),
                 ),
               ),
@@ -199,6 +205,7 @@ class HomePageState extends State<HomePage> {
                 height: 450,
                 width: MediaQuery.of(context).size.width,
                 child: ListView.builder(
+                  padding: EdgeInsets.all(0),
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   itemCount: ListImageVertical.length,
@@ -271,6 +278,7 @@ class HomePageState extends State<HomePage> {
                                 Text(
                                   ListTitleVertical[idx],
                                   style: TextStyle(
+                                    fontFamily: "PoppinsMed",
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
                                   ),
@@ -322,7 +330,7 @@ class HomePageState extends State<HomePage> {
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 17,
-                    fontFamily: "assets/Fonts/Poppins-Medium.ttf",
+                    fontFamily: "PoppinsMed",
                   ),
                 ),
               ),
@@ -330,12 +338,12 @@ class HomePageState extends State<HomePage> {
                 height: 10,
               ),
               Container(
-                height: 200,
+                height: 250,
                 width: MediaQuery.of(context).size.width,
                 child: ListView.builder(
                   shrinkWrap: true,
                   itemCount: TipsListImages.length,
-                  physics: BouncingScrollPhysics(),
+                  physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, idx) {
                     return Card(
                       color: Colors.transparent,
@@ -356,7 +364,7 @@ class HomePageState extends State<HomePage> {
                           height: 80,
                           width: 80,
                           decoration: BoxDecoration(
-                            color: TipsColors[idx],
+                            color: TipsbackgroundColors[idx],
                             borderRadius: BorderRadius.circular(14),
                             image: DecorationImage(
                               image: AssetImage(
@@ -387,6 +395,53 @@ class HomePageState extends State<HomePage> {
               ),
             ],
           ),
+        ),
+      ),
+      extendBody: true,
+      bottomNavigationBar: Container(
+        margin: EdgeInsets.symmetric(
+          horizontal: 24,
+          vertical: 20,
+        ),
+        width: MediaQuery.of(context).size.width,
+        height: 65,
+        decoration: BoxDecoration(
+          color: Color.fromARGB(211, 199, 198, 198),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.home_rounded,
+                color: Color.fromARGB(255, 102, 102, 102),
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.email_rounded,
+                color: Color.fromARGB(255, 102, 102, 102),
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                CardText,
+                color: Color.fromARGB(255, 102, 102, 102),
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Heart,
+                color: Color.fromARGB(255, 102, 102, 102),
+              ),
+            )
+          ],
         ),
       ),
     );

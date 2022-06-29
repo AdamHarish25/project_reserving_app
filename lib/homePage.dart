@@ -398,51 +398,8 @@ class HomePageState extends State<HomePage> {
         ),
       ),
       extendBody: true,
-      bottomNavigationBar: Container(
-        margin: EdgeInsets.symmetric(
-          horizontal: 24,
-          vertical: 20,
-        ),
-        width: MediaQuery.of(context).size.width,
-        height: 65,
-        decoration: BoxDecoration(
-          color: Color.fromARGB(211, 199, 198, 198),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.home_rounded,
-                color: Color.fromARGB(255, 102, 102, 102),
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.email_rounded,
-                color: Color.fromARGB(255, 102, 102, 102),
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                CardText,
-                color: Color.fromARGB(255, 102, 102, 102),
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Heart,
-                color: Color.fromARGB(255, 102, 102, 102),
-              ),
-            )
-          ],
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: 
       ),
     );
   }

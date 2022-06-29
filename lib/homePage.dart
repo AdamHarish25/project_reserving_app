@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, file_names, non_constant_identifier_names, prefer_const_constructors_in_immutables, prefer_adjacent_string_concatenation, prefer_const_literals_to_create_immutables, duplicate_ignore
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, file_names, non_constant_identifier_names, prefer_const_constructors_in_immutables, prefer_adjacent_string_concatenation, prefer_const_literals_to_create_immutables, duplicate_ignore, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:project_reserving_app/Icons.dart';
@@ -399,7 +399,17 @@ class HomePageState extends State<HomePage> {
       ),
       extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
-        items: 
+        
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.abc,
+            ),
+          ),
+        ],
+        backgroundColor: Color.fromARGB(211, 199, 198, 198),
+        elevation: 0,
+        
       ),
     );
   }

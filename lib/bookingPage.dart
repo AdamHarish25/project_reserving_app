@@ -21,7 +21,6 @@ class BookingPage extends StatefulWidget {
 }
 
 class _BookingPageState extends State<BookingPage> {
-  // double? _ratingValue;
   final ListImage = [
     "assets/images/Bedroom.png",
     "assets/images/Bathtub.png",
@@ -102,7 +101,6 @@ class _BookingPageState extends State<BookingPage> {
               ),
               Positioned(
                 bottom: 0,
-                // height: MediaQuery.of(context).size.height * 0.6,
                 width: MediaQuery.of(context).size.width,
                 child: Container(
                   padding: EdgeInsets.symmetric(
@@ -175,9 +173,7 @@ class _BookingPageState extends State<BookingPage> {
                               ),
                               ignoreGestures: true,
                               onRatingUpdate: (value) {
-                                setState(() {
-                                  // _ratingValue = value;
-                                });
+                                setState(() {});
                               },
                             ),
                           ],

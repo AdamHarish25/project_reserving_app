@@ -7,3 +7,5 @@ const IconData CardText = IconData(0xe934, fontFamily: 'Card');
 
 ///
 const IconData Heart = IconData(0xe954, fontFamily: 'Heart');
+
+const IconData Heart_Outlined = IconData(0xe951, fontFamily: 'Heart-Outlined');

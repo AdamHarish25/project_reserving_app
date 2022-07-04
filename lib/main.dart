@@ -38,7 +38,6 @@ class _SplashScreenState extends State<SplashScreen> {
         physics: NeverScrollableScrollPhysics(),
         child: Column(
           children: [
-            /// Upper Splash Section
             Container(
               height: MediaQuery.of(context).size.height * 0.6,
               width: MediaQuery.of(context).size.width,
@@ -52,10 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     padding: EdgeInsets.symmetric(
                       vertical: 60,
                     ),
-                    child:
-
-                        /// Logo
-                        Image.asset(
+                    child: Image.asset(
                       "assets/images/CozyLogo.png",
                       height: 60,
                       width: 60,
@@ -66,10 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    child:
-
-                        /// Splash Title
-                        Text(
+                    child: Text(
                       "Find Cozy House \nto Stay and Happy",
                       style: TextStyle(
                         fontSize: 26,
@@ -83,10 +76,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    child:
-
-                        /// Splash Quotes
-                        Text(
+                    child: Text(
                       "Stop membuang banyak waktu \npada tempat yang tidak habitable",
                       style: TextStyle(
                         color: Color.fromARGB(130, 83, 83, 83),
@@ -100,10 +90,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
-                    child:
-
-                        /// Navigation or Start button
-                        ElevatedButton(
+                    child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: Color.fromARGB(186, 128, 0, 157),
                         padding: EdgeInsets.symmetric(
@@ -133,8 +120,6 @@ class _SplashScreenState extends State<SplashScreen> {
                 ],
               ),
             ),
-
-            /// Down Splash Section
             Container(
               height: MediaQuery.of(context).size.height * 0.4,
               width: MediaQuery.of(context).size.width,

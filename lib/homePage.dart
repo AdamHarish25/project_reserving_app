@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:project_reserving_app/Icons.dart';
+import 'package:project_reserving_app/bookingPage.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -70,6 +71,14 @@ class HomePageState extends State<HomePage> {
     "3/5",
   ];
 
+  List<double> ListRatingtoDouble = [
+    4,
+    5,
+    3,
+    5,
+    3,
+  ];
+
   final TipsListImages = [
     "assets/images/IllustrationImage1.png",
     "assets/images/IllustrationImage2.png",
@@ -100,6 +109,7 @@ class HomePageState extends State<HomePage> {
         ListTitleHorizontal: ListTitleHorizontal,
         ListImageVertical: ListImageVertical,
         ListRating: ListRating,
+        ListRatingtoDouble: ListRatingtoDouble,
         ListTitleVertical: ListTitleVertical,
         ListHarga: ListHarga,
         ListPlacesName: ListPlacesName,
@@ -362,6 +372,7 @@ class MainPage extends StatelessWidget {
     required this.ListTitleHorizontal,
     required this.ListImageVertical,
     required this.ListRating,
+    required this.ListRatingtoDouble,
     required this.ListTitleVertical,
     required this.ListHarga,
     required this.ListPlacesName,
@@ -375,6 +386,7 @@ class MainPage extends StatelessWidget {
   final List<String> ListTitleHorizontal;
   final List<String> ListImageVertical;
   final List<String> ListRating;
+  final List<double> ListRatingtoDouble;
   final List<String> ListTitleVertical;
   final List<String> ListHarga;
   final List<String> ListPlacesName;
@@ -506,7 +518,17 @@ class MainPage extends StatelessWidget {
                 itemBuilder: (ctx, idx) {
                   return InkWell(
                     borderRadius: BorderRadius.circular(20),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => BookingPage(
+                            HomestayNames: ListTitleVertical[idx],
+                            HomestayPrices: ListHarga[idx],
+                            HomestayRatings: ListRatingtoDouble[idx],
+                          ),
+                        ),
+                      );
+                    },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 20,

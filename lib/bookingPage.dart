@@ -21,6 +21,9 @@ class BookingPage extends StatefulWidget {
 }
 
 class _BookingPageState extends State<BookingPage> {
+  final Controller2 = ScrollController();
+
+  final Controller3 = DraggableScrollableController();
   final ListImage = [
     "assets/images/Bedroom.png",
     "assets/images/Bathtub.png",
@@ -31,81 +34,86 @@ class _BookingPageState extends State<BookingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              Positioned(
-                top: 0,
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.4,
-                  width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.all(35),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/BookpageBack.png"),
-                      fit: BoxFit.fill,
-                      alignment: Alignment.topCenter,
-                    ),
-                  ),
-                  alignment: Alignment.topCenter,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => HomePage(),
-                            ),
-                          );
-                        },
-                        child: Icon(
-                          size: 30,
-                          color: Colors.black,
-                          Icons.keyboard_arrow_left_rounded,
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: Size(40, 60),
-                          elevation: 0,
-                          primary: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Icon(
-                          size: 25,
-                          color: Colors.black,
-                          Heart_Outlined,
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: Size(40, 60),
-                          elevation: 0,
-                          primary: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.all(35),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/BookpageBack.png"),
+                  fit: BoxFit.fitHeight,
+                  alignment: Alignment.bottomCenter,
                 ),
               ),
-              Positioned(
-                bottom: 0,
-                width: MediaQuery.of(context).size.width,
-                child: Container(
+              alignment: Alignment.topCenter,
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => HomePage(),
+                              ),
+                            );
+                          },
+                          child: Icon(
+                            size: 30,
+                            color: Colors.black,
+                            Icons.keyboard_arrow_left_rounded,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            fixedSize: Size(40, 60),
+                            elevation: 0,
+                            primary: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Icon(
+                            size: 25,
+                            color: Colors.black,
+                            Heart_Outlined,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            fixedSize: Size(40, 60),
+                            elevation: 0,
+                            primary: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            DraggableScrollableSheet(
+              expand: true,
+              builder: (context, ScrollController? controller) {
+                return Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
                   padding: EdgeInsets.symmetric(
-                    vertical: 70,
-                    horizontal: 30,
+                    vertical: 30,
+                    horizontal: 25,
                   ),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -114,69 +122,76 @@ class _BookingPageState extends State<BookingPage> {
                     ),
                   ),
                   child: SingleChildScrollView(
+                    controller: controller,
+                    physics: BouncingScrollPhysics(),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            RichText(
-                              textAlign: TextAlign.start,
-                              text: TextSpan(
-                                text: widget.HomestayNames + (" \n"),
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: "PoppinsMed",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: widget.HomestayPrices,
-                                    style: TextStyle(
-                                      fontFamily: "PoppinsMed",
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color.fromARGB(255, 196, 46, 222),
-                                    ),
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              RichText(
+                                textAlign: TextAlign.start,
+                                text: TextSpan(
+                                  text: widget.HomestayNames + (" \n"),
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: "PoppinsMed",
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
                                   ),
-                                  TextSpan(
-                                    text: " / month",
-                                    style: TextStyle(
-                                      fontFamily: "PoppinsMed",
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 16,
-                                      color: Colors.grey,
+                                  children: [
+                                    TextSpan(
+                                      text: widget.HomestayPrices,
+                                      style: TextStyle(
+                                        fontFamily: "PoppinsMed",
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color:
+                                            Color.fromARGB(255, 196, 46, 222),
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            RatingBar(
-                              itemCount: 5,
-                              initialRating: widget.HomestayRatings,
-                              direction: Axis.horizontal,
-                              allowHalfRating: true,
-                              ratingWidget: RatingWidget(
-                                full: Icon(
-                                  Icons.star_rounded,
-                                  color: Colors.orange,
-                                ),
-                                half: Icon(
-                                  Icons.star_half_rounded,
-                                  color: Colors.orange,
-                                ),
-                                empty: Icon(
-                                  Icons.star_outline_rounded,
-                                  color: Colors.orange,
+                                    TextSpan(
+                                      text: " / month",
+                                      style: TextStyle(
+                                        fontFamily: "PoppinsMed",
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 16,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              ignoreGestures: true,
-                              onRatingUpdate: (value) {
-                                setState(() {});
-                              },
-                            ),
-                          ],
+                              RatingBar(
+                                itemCount: 5,
+                                initialRating: widget.HomestayRatings,
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemSize: 30,
+                                ratingWidget: RatingWidget(
+                                  full: Icon(
+                                    Icons.star_rounded,
+                                    color: Colors.orange,
+                                  ),
+                                  half: Icon(
+                                    Icons.star_half_rounded,
+                                    color: Colors.orange,
+                                  ),
+                                  empty: Icon(
+                                    Icons.star_outline_rounded,
+                                    color: Colors.orange,
+                                  ),
+                                ),
+                                ignoreGestures: true,
+                                onRatingUpdate: (value) {
+                                  setState(() {});
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                         Container(
                           margin: EdgeInsets.only(
@@ -205,7 +220,7 @@ class _BookingPageState extends State<BookingPage> {
                                   Image.asset(
                                     "assets/images/Bar.png",
                                     height: 60,
-                                    width: 50,
+                                    width: 40,
                                   ),
                                   RichText(
                                     text: TextSpan(
@@ -240,7 +255,7 @@ class _BookingPageState extends State<BookingPage> {
                                   Image.asset(
                                     "assets/images/Bed.png",
                                     height: 60,
-                                    width: 50,
+                                    width: 40,
                                   ),
                                   RichText(
                                     text: TextSpan(
@@ -275,7 +290,7 @@ class _BookingPageState extends State<BookingPage> {
                                   Image.asset(
                                     "assets/images/Cupboard.png",
                                     height: 60,
-                                    width: 50,
+                                    width: 40,
                                   ),
                                   RichText(
                                     text: TextSpan(
@@ -411,10 +426,10 @@ class _BookingPageState extends State<BookingPage> {
                       ],
                     ),
                   ),
-                ),
-              ),
-            ],
-          ),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

@@ -1,7 +1,9 @@
 // ignore_for_file: implementation_imports, unnecessary_import, prefer_const_constructors, file_names, prefer_const_literals_to_create_immutables, sort_child_properties_last, sized_box_for_whitespace, unnecessary_string_escapes, non_constant_identifier_names, prefer_const_constructors_in_immutables, prefer_typing_uninitialized_variables
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:project_reserving_app/Colors.dart';
 import 'package:project_reserving_app/Icons.dart';
+import 'package:project_reserving_app/RegistryPage.dart';
 import 'package:project_reserving_app/homePage.dart';
 
 class BookingPage extends StatefulWidget {
@@ -10,11 +12,13 @@ class BookingPage extends StatefulWidget {
     this.HomestayNames,
     this.HomestayPrices,
     this.HomestayRatings,
+    this.HomestayImages,
   }) : super(key: key);
 
   final HomestayNames;
   final HomestayPrices;
   final HomestayRatings;
+  final HomestayImages;
 
   @override
   State<BookingPage> createState() => _BookingPageState();
@@ -41,14 +45,14 @@ class _BookingPageState extends State<BookingPage> {
           fit: StackFit.expand,
           children: [
             Container(
-              height: MediaQuery.of(context).size.height,
+              height: MediaQuery.of(context).size.height * 0.6,
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.all(35),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/BookpageBack.png"),
-                  fit: BoxFit.fitHeight,
-                  alignment: Alignment.bottomCenter,
+                  image: AssetImage(widget.HomestayImages),
+                  fit: BoxFit.contain,
+                  alignment: Alignment.topCenter,
                 ),
               ),
               alignment: Alignment.topCenter,
@@ -106,6 +110,9 @@ class _BookingPageState extends State<BookingPage> {
               ),
             ),
             DraggableScrollableSheet(
+              initialChildSize: .70,
+              maxChildSize: .90,
+              minChildSize: .70,
               expand: true,
               builder: (context, ScrollController? controller) {
                 return Container(
@@ -336,26 +343,45 @@ class _BookingPageState extends State<BookingPage> {
                         Container(
                           width: MediaQuery.of(context).size.width,
                           height: 100,
-                          child: ListView.builder(
-                            itemCount: ListImage.length,
-                            scrollDirection: Axis.horizontal,
-                            physics: BouncingScrollPhysics(),
-                            itemBuilder: (ctx, idx) {
-                              return Container(
-                                margin: EdgeInsets.all(10),
-                                height: 100,
-                                width: 110,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                      ListImage[idx],
-                                    ),
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              );
+                          child: ShaderMask(
+                            shaderCallback: (Rect rect) {
+                              return LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  Colors.purple,
+                                  Colors.transparent,
+                                  Colors.transparent,
+                                  Colors.purple,
+                                ],
+                                stops: [0.0, 0.1, 0.9, 1.0],
+                              ).createShader(rect);
                             },
+                            blendMode: BlendMode.dstOut,
+                            child: ListView.builder(
+                              padding: EdgeInsets.only(
+                                left: 5,
+                              ),
+                              itemCount: ListImage.length,
+                              scrollDirection: Axis.horizontal,
+                              physics: BouncingScrollPhysics(),
+                              itemBuilder: (ctx, idx) {
+                                return Container(
+                                  margin: EdgeInsets.all(10),
+                                  height: 100,
+                                  width: 110,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        ListImage[idx],
+                                      ),
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                         ),
                         Container(
@@ -403,7 +429,13 @@ class _BookingPageState extends State<BookingPage> {
                           height: 60,
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => RegistryPage(),
+                              ),
+                            );
+                          },
                           child: Text(
                             "Book Now",
                             style: TextStyle(
@@ -417,7 +449,7 @@ class _BookingPageState extends State<BookingPage> {
                               MediaQuery.of(context).size.width,
                               50,
                             ),
-                            primary: Color.fromARGB(255, 137, 15, 158),
+                            primary: purpleDark,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(17),
                             ),

@@ -451,47 +451,63 @@ class MainPage extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: 150,
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: ListImageHorizontal.length,
-                    itemBuilder: (ctx, idx) {
-                      return GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          margin: EdgeInsets.all(10),
-                          height: 150,
-                          width: 120,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(18),
-                            image: DecorationImage(
-                              image: AssetImage(ListImageHorizontal[idx]),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          alignment: Alignment.bottomCenter,
-                          child: Container(
-                            width: 120,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(199, 232, 228, 228),
-                              borderRadius: BorderRadius.vertical(
-                                bottom: Radius.circular(18),
-                              ),
-                            ),
-                            alignment: Alignment.center,
-                            child: Text(
-                              ListTitleHorizontal[idx],
-                              style: TextStyle(
-                                fontFamily: "PoppinsMed",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
+                  child: ShaderMask(
+                    shaderCallback: (Rect rect) {
+                      return LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          Colors.purple,
+                          Colors.transparent,
+                          Colors.transparent,
+                          Colors.purple,
+                        ],
+                        stops: [0.0, 0.1, 0.9, 1.0],
+                      ).createShader(rect);
                     },
+                    blendMode: BlendMode.dstOut,
+                    child: ListView.builder(
+                      physics: BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: ListImageHorizontal.length,
+                      itemBuilder: (ctx, idx) {
+                        return GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            margin: EdgeInsets.all(10),
+                            height: 150,
+                            width: 120,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(18),
+                              image: DecorationImage(
+                                image: AssetImage(ListImageHorizontal[idx]),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            alignment: Alignment.bottomCenter,
+                            child: Container(
+                              width: 120,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(199, 232, 228, 228),
+                                borderRadius: BorderRadius.vertical(
+                                  bottom: Radius.circular(18),
+                                ),
+                              ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                ListTitleHorizontal[idx],
+                                style: TextStyle(
+                                  fontFamily: "PoppinsMed",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -515,130 +531,148 @@ class MainPage extends StatelessWidget {
                 Container(
                   height: 450,
                   width: MediaQuery.of(context).size.width,
-                  child: ListView.builder(
-                    padding: EdgeInsets.all(0),
-                    physics: BouncingScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    itemCount: ListImageVertical.length,
-                    itemBuilder: (ctx, idx) {
-                      return InkWell(
-                        borderRadius: BorderRadius.circular(20),
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => BookingPage(
-                                HomestayNames: ListTitleVertical[idx],
-                                HomestayPrices: ListHarga[idx],
-                                HomestayRatings: ListRatingtoDouble[idx],
+                  child: ShaderMask(
+                    shaderCallback: (Rect rect) {
+                      return LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.purple,
+                          Colors.transparent,
+                          Colors.transparent,
+                          Colors.purple,
+                        ],
+                        stops: [0.0, 0.1, 0.9, 1.0],
+                      ).createShader(rect);
+                    },
+                    blendMode: BlendMode.dstOut,
+                    child: ListView.builder(
+                      padding: EdgeInsets.all(0),
+                      physics: BouncingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      itemCount: ListImageVertical.length,
+                      itemBuilder: (ctx, idx) {
+                        return InkWell(
+                          borderRadius: BorderRadius.circular(20),
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => BookingPage(
+                                  HomestayNames: ListTitleVertical[idx],
+                                  HomestayPrices: ListHarga[idx],
+                                  HomestayRatings: ListRatingtoDouble[idx],
+                                  HomestayImages: ListImageVertical[idx],
+                                ),
                               ),
+                            );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 20,
+                              horizontal: 10,
                             ),
-                          );
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 20,
-                            horizontal: 10,
-                          ),
-                          width: MediaQuery.of(context).size.width,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: 110,
-                                width: 130,
-                                alignment: Alignment.topRight,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(18),
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                      ListImageVertical[idx],
-                                    ),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 110,
+                                  width: 130,
+                                  alignment: Alignment.topRight,
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(35),
-                                      topRight: Radius.circular(18),
+                                    borderRadius: BorderRadius.circular(18),
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        ListImageVertical[idx],
+                                      ),
+                                      fit: BoxFit.cover,
                                     ),
-                                    color: Color.fromARGB(255, 196, 46, 222),
                                   ),
-                                  height: 30,
-                                  width: 70,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.star,
-                                        size: 20,
-                                        color: Colors.amber,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(35),
+                                        topRight: Radius.circular(18),
                                       ),
-                                      SizedBox(
-                                        width: 3,
-                                      ),
-                                      Text(
-                                        ListRating[idx],
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 15,
+                                      color: Color.fromARGB(255, 196, 46, 222),
+                                    ),
+                                    height: 30,
+                                    width: 70,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.star,
+                                          size: 20,
+                                          color: Colors.amber,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 30,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                // ignore: prefer_const_literals_to_create_immutables
-                                children: [
-                                  Text(
-                                    ListTitleVertical[idx],
-                                    style: TextStyle(
-                                      fontFamily: "PoppinsMed",
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                          text: " / " + "month",
+                                        SizedBox(
+                                          width: 3,
+                                        ),
+                                        Text(
+                                          ListRating[idx],
                                           style: TextStyle(
-                                            color: Colors.grey,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 15,
                                           ),
                                         ),
                                       ],
-                                      text: ListHarga[idx],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  // ignore: prefer_const_literals_to_create_immutables
+                                  children: [
+                                    Text(
+                                      ListTitleVertical[idx],
                                       style: TextStyle(
+                                        fontFamily: "PoppinsMed",
                                         fontWeight: FontWeight.bold,
-                                        color:
-                                            Color.fromARGB(255, 196, 46, 222),
+                                        fontSize: 16,
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    ListPlacesName[idx],
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 12,
+                                    RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: " / " + "month",
+                                            style: TextStyle(
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                        ],
+                                        text: ListHarga[idx],
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color:
+                                              Color.fromARGB(255, 196, 46, 222),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      ListPlacesName[idx],
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
                 ),
                 SizedBox(

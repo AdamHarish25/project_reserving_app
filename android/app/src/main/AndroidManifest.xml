@@ -1,8 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.project_reserving_app">
    <application
-        android:label="project_reserving_app"
-        android:name="${applicationName}"
+        android:label="CozyApp"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

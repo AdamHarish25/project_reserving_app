@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height * 0.6,
+              height: MediaQuery.of(context).size.height * 0.5,
               width: MediaQuery.of(context).size.width,
               color: Colors.transparent,
               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -121,15 +121,14 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
             Container(
-              height: MediaQuery.of(context).size.height * 0.4,
+              height: MediaQuery.of(context).size.height * 0.5,
               width: MediaQuery.of(context).size.width,
-              alignment: Alignment.centerRight,
+              alignment: Alignment.topRight,
               color: Color.fromARGB(255, 251, 118, 16),
               child: Image.asset(
                 "assets/images/house.png",
-                height: 700,
-                width: 700,
-                fit: BoxFit.cover,
+                cacheHeight: 500,
+                width: 400,
                 alignment: Alignment.topRight,
               ),
             ),

@@ -38,6 +38,63 @@ class _BookingPageState extends State<BookingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leadingWidth: 80,
+        leading: Card(
+          elevation: 0,
+          color: Colors.transparent,
+          margin: EdgeInsets.only(
+            left: 20,
+          ),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Icon(
+              size: 30,
+              color: Colors.black,
+              Icons.keyboard_arrow_left_rounded,
+            ),
+            style: ElevatedButton.styleFrom(
+              fixedSize: Size(40, 60),
+              elevation: 0,
+              primary: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100),
+              ),
+            ),
+          ),
+        ),
+        actions: [
+          Card(
+            elevation: 0,
+            color: Colors.transparent,
+            margin: EdgeInsets.only(
+              right: 20,
+            ),
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Icon(
+                size: 25,
+                color: Colors.black,
+                Heart_Outlined,
+              ),
+              style: ElevatedButton.styleFrom(
+                fixedSize: Size(40, 60),
+                elevation: 0,
+                primary: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+      extendBodyBehindAppBar: true,
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -56,58 +113,6 @@ class _BookingPageState extends State<BookingPage> {
                 ),
               ),
               alignment: Alignment.topCenter,
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => HomePage(),
-                              ),
-                            );
-                          },
-                          child: Icon(
-                            size: 30,
-                            color: Colors.black,
-                            Icons.keyboard_arrow_left_rounded,
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            fixedSize: Size(40, 60),
-                            elevation: 0,
-                            primary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                          ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Icon(
-                            size: 25,
-                            color: Colors.black,
-                            Heart_Outlined,
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            fixedSize: Size(40, 60),
-                            elevation: 0,
-                            primary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
             ),
             DraggableScrollableSheet(
               initialChildSize: .70,
